@@ -72,7 +72,7 @@ class Managements::RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up(resource_name, resource)
-    unless current_user_is_admin?
+    if !current_user_is_admin?
       sign_in(resource_name, resource)
     end
   end
