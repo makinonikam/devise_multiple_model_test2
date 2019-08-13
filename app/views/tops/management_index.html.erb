@@ -1,0 +1,10 @@
+<h1>うんえい・士業</h1>
+
+<% if current_management.role == Constants::ROLE_ADMIN%>
+  どうも、adminです
+
+  <p><%= link_to "新しい運営・アドバイザの登録", new_management_registration_path %></p>
+
+<% elsif current_management.role == Constants::ROLE_ADVISOR %>
+  どうも、advisorです
+<% end %>

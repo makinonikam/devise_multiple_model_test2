@@ -9,7 +9,28 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+<body>
+  <header>
+    <nav>
+      <% if management_signed_in? %>
+        <strong>【admin/advisor】<%= link_to current_management.email, tops_management_path %></strong>
+        <%= link_to 'プロフィール変更', edit_management_registration_path %>
+        <%= link_to 'ログアウト', destroy_management_session_path, method: :delete %>
+      <% elsif worker_signed_in? %>
+          <strong>【worker】<%= link_to current_worker.email, tops_worker_path %></strong>
+        <%= link_to 'プロフィール変更', edit_worker_registration_path %>
+        <%= link_to 'ログアウト', destroy_worker_session_path, method: :delete %>
+      <% else %>
+        <%= link_to '運営士業サインアップ', new_management_registration_path %>
+        <%= link_to '運営士業ログイン', new_management_session_path %>
+        <%= link_to 'workerサインアップ', new_worker_registration_path %>
+        <%= link_to 'workerログイン', new_worker_session_path %>
+      <% end %>
+    </nav>
+</header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p >
     <%= yield %>
   </body>
 </html>
